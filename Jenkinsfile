@@ -5,7 +5,7 @@ node {
         stage('scm') {
            
                 // Get some code from a GitHub repository
-               git branch: 'dev', credentialsId: 'git-credentials', url: 'https://github.com/markondareddy/maven-calculationApp.git'
+               git branch: 'dev', credentialsId: 'git-credentials', url: 'https://github.com/Umesh12122016/maven-calculationApp.git'
                mvnHome = tool 'maven 3.8.1'
            
         }  
@@ -43,8 +43,8 @@ node {
         
         stage('Deploy') {
           
-                withCredentials([usernameColonPassword(credentialsId: 'ubuntu_tomcat_credentials', variable: 'ubuntu_tomcat_credentials')]) {
-                sh "curl -v -u ${ubuntu_tomcat_credentials} -T /var/lib/jenkins/workspace/pipelineproject/target/CalculationMavenApp.war 'http://ec2-3-80-164-102.compute-1.amazonaws.com:8080/manager/text/deploy?path=/CalculationAppScipted&update=true'"
+                withCredentials([usernameColonPassword(credentialsId: 'linux_tomcat_credentials', variable: 'linux_tomcat_credentials')]) {
+                sh "curl -v -u ${linux_tomcat_credentials} -T /var/lib/jenkins/workspace/pipelineproject/target/CalculationMavenApp.war 'http://ec2-35-88-255-15.us-west-2.compute.amazonaws.com:8080/manager/text/deploy?path=/CalculationAppScipted&update=true'"
                 }
               
              
